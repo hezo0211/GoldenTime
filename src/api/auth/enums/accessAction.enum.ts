@@ -1,0 +1,5 @@
+export enum AccessAction {
+  CREATE_ACCOUNT = 'CREATE_ACCOUNT',
+  RESET_PASSWORD = 'RESET_PASSWORD',
+  NONE = 'NONE',
+}
