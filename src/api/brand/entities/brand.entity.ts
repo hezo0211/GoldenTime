@@ -1,15 +1,14 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Exclude, Expose } from 'class-transformer';
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
+@Exclude()
 @Entity()
-export class Brand{
-    @PrimaryGeneratedColumn("uuid")
-    BrandID: string;
-    @Column()
-    BrandName: string;
-    @Column()
-    Description: string;
-    @CreateDateColumn()
-    CreatedAt: Date;
-    @UpdateDateColumn()
-    UpdatedAt: Date;
+export class Brand {
+  @Expose()
+  @PrimaryGeneratedColumn('uuid')
+  brandId: string;
+
+  @Expose()
+  @Column({ length: 100 })
+  brandName: string;
 }

@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { OrderService } from './order.service';
+import { SharedWatchModule } from '../watch/shared/sharedWatch.module';
 import { OrderController } from './order.controller';
-import { SharedOrderModule } from './shared/sharedorder.module';
+import { SharedOrderModule } from './shared/sharedOrder.module';
 
 @Module({
+  imports: [SharedWatchModule, SharedOrderModule],
   controllers: [OrderController],
-  imports: [SharedOrderModule]
 })
 export class OrderModule {}

@@ -1,5 +1,5 @@
 {
-  "name": "shoesmark-api",
+  "name": "goldentime-api",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -29,6 +29,7 @@
     "@nestjs/passport": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/schedule": "^2.1.0",
+    "@nestjs/serve-static": "^3.0.0",
     "@nestjs/swagger": "^6.0.2",
     "@nestjs/throttler": "^3.0.0",
     "@nestjs/typeorm": "^9.0.0",

@@ -9,7 +9,7 @@ import {
 import { AES, enc } from 'crypto-js';
 import { Env } from 'src/shared/enums/Env.enum';
 import { AuthService } from './auth.service';
-import { RefreshDto as RefreshDto } from './dtos/bodies/refresh.dto';
+import { RefreshDto } from './dtos/bodies/refresh.dto';
 import { JsonEntity } from 'src/shared/JsonEntity';
 import { SignUpDto } from './dtos/bodies/signUp.dto';
 import { instanceToPlain, plainToInstance } from 'class-transformer';
@@ -21,7 +21,7 @@ import { ApiTags } from '@nestjs/swagger';
 import { AuthRequest } from './decorators/auth.decorator';
 import { JsonAction } from 'src/shared/JsonAction';
 import { RequireAction } from './decorators/requireAction';
-import { AccessAction } from './enums/accessAction.enum';
+import { AccessAction } from './enums/activationAction.enum';
 import { Access, AccessRequest } from './decorators/access.decorator';
 import { OtpDto } from './dtos/bodies/otp.dto';
 import { MailerService } from '@nestjs-modules/mailer';
@@ -99,8 +99,11 @@ export class AuthController {
     const user = await repository.findOne({
       where: [{ username: loginDto.username }, { email: loginDto.email }],
     });
+    if (!isDefined(user))
+      throw new BadRequestException('Tài khoản hoặc mật khẩu không hợp lệ');
     if (!(await bcrypt.compare(loginDto.password, user.password)))
-      throw new BadRequestException('Mật khẩu không hợp lệ');
+      throw new BadRequestException('Tài khoản hoặc mật khẩu không hợp lệ');
+
     const auth = plainToInstance(AuthRequest, user);
     return new JsonEntity(
       await this.authService.createToken(instanceToPlain(auth)),

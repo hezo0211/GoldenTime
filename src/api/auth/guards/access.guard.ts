@@ -10,7 +10,7 @@ import { AES, enc } from 'crypto-js';
 import * as dayjs from 'dayjs';
 import { Observable } from 'rxjs';
 import { Env } from 'src/shared/enums/Env.enum';
-import { AccessAction } from '../enums/accessAction.enum';
+import { AccessAction } from '../enums/activationAction.enum';
 
 @Injectable()
 export class AccessGuard implements CanActivate {

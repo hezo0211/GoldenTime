@@ -1,6 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Type } from 'class-transformer';
-import { IsEmail, IsEnum, IsNotEmpty, IsPhoneNumber, IsString } from 'class-validator';
+import {
+  IsEmail,
+  IsEnum,
+  IsNotEmpty,
+  IsString,
+  Length,
+} from 'class-validator';
 import { Gender } from 'src/api/user/enums/gender';
 import { UserEmailMustNotExist } from 'src/api/user/validators/decorators/userEmailMustNotExist.decorator';
 import { UserNameMustNotExist } from 'src/api/user/validators/decorators/userNameMustNotExist.decorator';
@@ -23,30 +28,35 @@ export class SignUpDto {
   email: string;
 
   @ApiProperty()
+  @Length(1, 35)
   @IsString()
   firstName: string;
 
   @ApiProperty()
+  @Length(1, 100)
   @IsString()
   lastName: string;
 
-  @ApiProperty({type:"enum",enum:Gender})
-  @IsEnum(Gender)
-  gender: Gender;
-
   @ApiProperty()
-  @IsPhoneNumber()
+  @IsString()
   phoneNumber: string;
 
   @ApiProperty()
+  @IsEnum(Gender)
+  gender: string;
+
+  @ApiProperty()
+  @Length(1, 35)
   @IsString()
   city: string;
 
   @ApiProperty()
+  @Length(1, 75)
   @IsString()
   district: string;
 
   @ApiProperty()
+  @Length(1, 255)
   @IsString()
   address: string;
 }

@@ -1,15 +1,32 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Exclude, Expose } from 'class-transformer';
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryGeneratedColumn,
+  UpdateDateColumn,
+} from 'typeorm';
 
+@Exclude()
 @Entity()
-export class Category{
-    @PrimaryGeneratedColumn("uuid")
-    CategoryID: string;
-    @Column()
-    CategoryName: string;
-    @Column()
-    Description: string;
-    @CreateDateColumn()
-    CreatedAt: Date;
-    @UpdateDateColumn()
-    UpdatedAt: Date;
+export class Category {
+  @Expose()
+  @PrimaryGeneratedColumn('uuid')
+  categoryId: string;
+
+  @Expose()
+  @Column({ length: 100 })
+  categoryName: string;
+
+  @Expose()
+  @Column({ nullable: true })
+  description: string;
+
+  @Expose()
+  @CreateDateColumn({ type: 'timestamp' })
+  createdAt: Date;
+
+  @Expose()
+  @UpdateDateColumn({ type: 'timestamp' })
+  updatedAt: Date;
 }

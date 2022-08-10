@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { BrandController } from './brand.controller';
-import { SharedBrandModule } from './shared/sharedbrand.module';
+import { SharedBrandModule } from './shared/sharedBrand.module';
 
 @Module({
+  imports: [SharedBrandModule],
   controllers: [BrandController],
-  imports: [SharedBrandModule]
 })
 export class BrandModule {}

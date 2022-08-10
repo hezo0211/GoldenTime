@@ -9,12 +9,15 @@ import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
 import { Env } from './shared/enums/Env.enum';
 import { ScheduleModule } from '@nestjs/schedule';
 import { UserModule } from './api/user/user.module';
-import { NotificationModule } from './api/notification/notification.module';
-import { Category } from './api/category/entities/category.entity';
 import { CategoryModule } from './api/category/category.module';
 import { BrandModule } from './api/brand/brand.module';
 import { WatchModule } from './api/watch/watch.module';
+import { ImportOrderModule } from './api/import-order/importOrder.module';
 import { OrderModule } from './api/order/order.module';
+import './shared/decorators/virtualColumn/polifill';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -39,7 +42,7 @@ import { OrderModule } from './api/order/order.module';
             },
           },
           defaults: {
-            from: 'GoldenTime <goldentime@email.com>',
+            from: 'ShoesMark <shoesmark@email.com>',
           },
           template: {
             dir: __dirname + '/templates/',
@@ -58,7 +61,6 @@ import { OrderModule } from './api/order/order.module';
         return {
           type: 'postgres',
           host: 'localhost',
-          port: 5433,
           username: configService.get(Env.DB_USERNAME),
           password: configService.get(Env.DB_PASSWORD),
           database: 'goldentime',
@@ -68,14 +70,18 @@ import { OrderModule } from './api/order/order.module';
       },
       inject: [ConfigService],
     }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'uploads'),
+      serveRoot: '/uploads',
+    }),
     ScheduleModule.forRoot(),
     AuthModule,
     UserModule,
-    NotificationModule,
     CategoryModule,
     BrandModule,
     WatchModule,
-    OrderModule
+    ImportOrderModule,
+    OrderModule,
   ],
   controllers: [AppController],
 })

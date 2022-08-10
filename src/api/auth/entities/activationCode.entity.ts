@@ -6,7 +6,7 @@ import {
   Entity,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { AccessAction } from '../enums/accessAction.enum';
+import { AccessAction } from '../enums/activationAction.enum';
 
 @Entity()
 export class ActivationCode {

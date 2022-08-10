@@ -6,7 +6,7 @@ import { RefreshToken } from './entities/refreshToken.entity';
 import * as jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
 import { Env } from 'src/shared/enums/Env.enum';
-import { AccessAction } from './enums/accessAction.enum';
+import { AccessAction } from './enums/activationAction.enum';
 import * as dayjs from 'dayjs';
 import { AES } from 'crypto-js';
 
@@ -41,7 +41,7 @@ export class AuthService {
     await this.refreshTokenRepository.save(refreshToken);
     return {
       accessToken: jwt.sign(payload, this.configService.get(Env.JWT_SECRET), {
-        expiresIn: '15 minutes',
+        expiresIn: '30 minutes',
       }),
       refreshToken: refreshToken.token,
     };

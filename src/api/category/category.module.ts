@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { CategoryController } from './category.controller';
-import { SharedCategoryModule } from './shared/sharedcategory.module';
+import { SharedCategoryModule } from './shared/sharedCategory.module';
 
 @Module({
+  imports: [SharedCategoryModule],
   controllers: [CategoryController],
-  imports: [SharedCategoryModule]
 })
 export class CategoryModule {}
