@@ -36,7 +36,9 @@ export class Order {
   status: OrderStatus;
 
   @Expose()
-  @VirtualColumn('total_price')
+  @VirtualColumn({
+    name: 'total_price',
+  })
   totalPrice: number;
 
   @Expose()

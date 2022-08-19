@@ -12,7 +12,7 @@ export class OrderDetail {
 
   @Expose()
   @PrimaryColumn('uuid')
-  shoesId: string;
+  watchId: string;
 
   @Expose()
   @ManyToOne(() => Order, (order) => order.details, {
@@ -28,7 +28,7 @@ export class OrderDetail {
   @JoinColumn({
     name: 'shoesId',
   })
-  shoes: Watch;
+  watch: Watch;
 
   @Expose()
   @Column()

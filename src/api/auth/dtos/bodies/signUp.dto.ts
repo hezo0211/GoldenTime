@@ -1,11 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsEmail,
-  IsEnum,
-  IsNotEmpty,
-  IsString,
-  Length,
-} from 'class-validator';
+import { IsEmail, IsEnum, IsNotEmpty, IsString, Length } from 'class-validator';
 import { Gender } from 'src/api/user/enums/gender';
 import { UserEmailMustNotExist } from 'src/api/user/validators/decorators/userEmailMustNotExist.decorator';
 import { UserNameMustNotExist } from 'src/api/user/validators/decorators/userNameMustNotExist.decorator';

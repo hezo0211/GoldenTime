@@ -35,15 +35,8 @@ export class WatchController {
 
   @Get()
   async getWatch(@Query() getWatchDto: GetWatchDto) {
-    const {
-      limit,
-      offset,
-      ids,
-      watchName,
-      categoryIds,
-      price,
-      size,
-    } = getWatchDto;
+    const { limit, offset, ids, watchName, categoryIds, price, size } =
+      getWatchDto;
     const data = await this.watchService.findAll({
       limit,
       offset,

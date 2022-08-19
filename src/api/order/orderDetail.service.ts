@@ -11,7 +11,7 @@ export class OrderDetailService {
   ) {}
   async findById(id: string, shoesId: string): Promise<OrderDetail> {
     return await this.orderDetailRepository.findOne({
-      where: { orderId: id, shoesId: shoesId },
+      where: { orderId: id, watchId: shoesId },
     });
   }
   async update(value: OrderDetail): Promise<OrderDetail> {
@@ -20,7 +20,7 @@ export class OrderDetailService {
   }
   async deleteById(id: string, shoesId: string): Promise<void> {
     await this.orderDetailRepository.delete({
-      shoesId: shoesId,
+      watchId: shoesId,
       orderId: id,
     });
   }

@@ -14,14 +14,14 @@ import {
 
 class PriceFilter {
   @ApiProperty({
-    name: "price[from]"
+    name: 'price[from]',
   })
   @IsNumber()
   @Type(() => Number)
   from: number;
 
   @ApiPropertyOptional({
-    name: "price[to]"
+    name: 'price[to]',
   })
   @IsNumber()
   @Type(() => Number)
@@ -75,7 +75,7 @@ export class GetWatchDto {
   size?: number;
 
   @ApiPropertyOptional({
-    name:"price"
+    name: 'price',
   })
   @ValidateNested()
   @Type(() => PriceFilter)

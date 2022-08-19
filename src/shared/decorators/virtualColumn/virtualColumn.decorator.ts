@@ -1,10 +1,19 @@
 import 'reflect-metadata';
 export const VIRTUAL_COLUMN_KEY = Symbol('VIRTUAL_COLUMN_KEY');
 
-export function VirtualColumn(name?: string): PropertyDecorator {
+interface VirtualColumnOptions {
+  name?: string;
+}
+
+export function VirtualColumn(
+  options?: VirtualColumnOptions,
+): PropertyDecorator {
   return (target, propType) => {
     const metaInfo = Reflect.getMetadata(VIRTUAL_COLUMN_KEY, target) || {};
-    metaInfo[propType] = name ?? propType;
+    const { name } = options;
+
+    metaInfo['propType'] = propType;
+    metaInfo['name'] = name ?? propType;
     Reflect.defineMetadata(VIRTUAL_COLUMN_KEY, metaInfo, target);
   };
 }

@@ -7,7 +7,7 @@ export class CreateOrderDetailDto {
   @ApiProperty()
   @WatchIdMustExist()
   @IsUUID()
-  shoesId: string;
+  watchId: string;
 
   @ApiProperty()
   @Min(1)
